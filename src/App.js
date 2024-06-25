@@ -7,6 +7,7 @@ import Pantalla from './components/Pantalla.jsx';
 import { BotonClear } from './components/BotonClear.js';
 import logo from './img/PixelPerfectWeb.png'
 import { useState } from 'react';
+import { evaluate } from 'mathjs';
 
 function App() {
 
@@ -14,6 +15,14 @@ function App() {
 
   const agregarInput = val => {
     setInput(input + val);
+  };
+
+  const calcularResultado = () => {
+    if(input){
+      setInput(evaluate(input));
+    }else{
+      alert("Por favor escriba valores para calcular.")
+    }
   };
 
   return (
@@ -45,7 +54,7 @@ function App() {
           <Boton manejarClic={agregarInput}>*</Boton>
         </div>
         <div className='fila'>
-          <Boton manejarClic={agregarInput}>=</Boton>
+          <Boton manejarClic={calcularResultado}>=</Boton>
           <Boton manejarClic={agregarInput}>0</Boton>
           <Boton manejarClic={agregarInput}>.</Boton>
           <Boton manejarClic={agregarInput}>/</Boton>
